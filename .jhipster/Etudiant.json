@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20221223044740",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "etudiant",
+  "fields": [
+    {
+      "fieldName": "codeEtudiant",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Etudiant",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "filiere",
+      "otherEntityRelationshipName": "etudiant",
+      "relationshipName": "filiere",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

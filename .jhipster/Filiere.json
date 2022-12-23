@@ -1,0 +1,41 @@
+{
+  "applications": "*",
+  "changelogDate": "20221223044739",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "filiere",
+  "fields": [
+    {
+      "fieldName": "codeFiliere",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nomFiliere",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typeFiliere",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Filiere",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "etudiant",
+      "otherEntityRelationshipName": "filiere",
+      "relationshipName": "etudiant",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "ecole",
+      "otherEntityRelationshipName": "filiere",
+      "relationshipName": "ecole",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

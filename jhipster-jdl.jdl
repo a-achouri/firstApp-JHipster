@@ -1,0 +1,48 @@
+
+entity Ecole {
+
+    nomEcole  String,
+    adresseEcole String,
+    telephoneEcole Integer
+  
+}
+
+
+entity Filiere  {
+
+	codeFiliere Integer,
+	nomFiliere String,
+	typeFiliere String
+    
+}
+
+
+entity Etudiant {
+
+	codeEtudiant Integer,
+	nom String,
+    prenom String,
+    age Integer,
+    email String
+    
+}
+
+
+relationship OneToMany {
+
+	Ecole to Filiere{ecole}
+}
+
+
+relationship  OneToMany {
+
+	Filiere to Etudiant{filiere}
+ 
+}
+
+
+
+
+
+
+

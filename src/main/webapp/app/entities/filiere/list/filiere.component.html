@@ -1,0 +1,113 @@
+<div>
+  <h2 id="page-heading" data-cy="FiliereHeading">
+    <span jhiTranslate="firstAppJHipsterApp.filiere.home.title">Filieres</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="firstAppJHipsterApp.filiere.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-filiere"
+        [routerLink]="['/filiere/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="firstAppJHipsterApp.filiere.home.createLabel"> Create a new Filiere </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="filieres?.length === 0">
+    <span jhiTranslate="firstAppJHipsterApp.filiere.home.notFound">No Filieres found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="filieres && filieres.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codeFiliere">
+            <div class="d-flex">
+              <span jhiTranslate="firstAppJHipsterApp.filiere.codeFiliere">Code Filiere</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nomFiliere">
+            <div class="d-flex">
+              <span jhiTranslate="firstAppJHipsterApp.filiere.nomFiliere">Nom Filiere</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="typeFiliere">
+            <div class="d-flex">
+              <span jhiTranslate="firstAppJHipsterApp.filiere.typeFiliere">Type Filiere</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ecole.id">
+            <div class="d-flex">
+              <span jhiTranslate="firstAppJHipsterApp.filiere.ecole">Ecole</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let filiere of filieres; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/filiere', filiere.id, 'view']">{{ filiere.id }}</a>
+          </td>
+          <td>{{ filiere.codeFiliere }}</td>
+          <td>{{ filiere.nomFiliere }}</td>
+          <td>{{ filiere.typeFiliere }}</td>
+          <td>
+            <div *ngIf="filiere.ecole">
+              <a [routerLink]="['/ecole', filiere.ecole.id, 'view']">{{ filiere.ecole.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/filiere', filiere.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/filiere', filiere.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(filiere)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
